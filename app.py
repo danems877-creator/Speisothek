@@ -453,22 +453,16 @@ def barcode_confirm_dialog():
             st.rerun()
 
 # --- Barcode-Scanner mit Foto-Upload ---
-st.header("Artikel per Barcode scannen")
+st.header("Artikel per Barcode scannen (Live-Kamera)")
 
-scan_method = st.radio(
-    "Wähle die Scan-Methode",
-    ["Live-Kamera (empfohlen für PWA)", "Foto hochladen (zuverlässige Alternative)"],
-    horizontal=True,
-    label_visibility="collapsed"
+img_file_buffer = st.camera_input(
+    "Richte die Kamera auf einen Barcode und mache ein Foto",
+    key="barcode_camera",
+    help="Für eine bessere Fokussierung, versuche auf den Barcode im Vorschaubild zu tippen."
 )
 
-if scan_method == "Live-Kamera (empfohlen für PWA)":
-    img_file_buffer = st.camera_input("Richte die Kamera auf einen Barcode", key="barcode_camera")
-else:
-    img_file_buffer = st.file_uploader("Lade ein Foto von einem Barcode hoch", type=['png', 'jpg', 'jpeg'], key="barcode_uploader")
-
 if img_file_buffer:
-    # Lese die Bilddaten (egal ob von Kamera oder Upload) und konvertiere sie für die Analyse
+    # Lese die Bilddaten und konvertiere sie für die Analyse
     bytes_data = img_file_buffer.getvalue()
     cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
     
