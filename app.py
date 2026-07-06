@@ -24,6 +24,10 @@ st.markdown("""
 [data-testid="stAppViewContainer"] {
     background-color: #D2B48C; /* Ein heller, bräunlicher Holzton (tan) */
 }
+/* Blendet die Streamlit-Standard-Kopfzeile aus (Fork, Github, etc.) */
+[data-testid="stHeader"] {
+    display: none;
+}
 </style>
 """, unsafe_allow_html=True)
 
