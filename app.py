@@ -14,7 +14,7 @@ from pyzbar.pyzbar import decode as pyzbar_decode # Importiere die pyzbar-Biblio
 # Dies sollte der erste Streamlit-Befehl im Skript sein.
 st.set_page_config(
     page_title="Inventar-App",
-    page_icon="🧊",
+    page_icon="static/icons/icon-192x192.png", # Verwendet jetzt dein eigenes Icon
     layout="wide"
 )
 
