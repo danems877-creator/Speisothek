@@ -461,39 +461,39 @@ def barcode_confirm_dialog():
             st.session_state.pending_barcode = None
             st.rerun()
 
-# --- Barcode-Scanner mit Foto-Upload ---
-st.header("Artikel per Barcode scannen (Live-Kamera)")
+# --- Barcode-Scanner (in einem Expander, um die Kamera nicht sofort zu starten) ---
+with st.expander("📷 Artikel per Barcode scannen", expanded=False):
+    img_file_buffer = st.camera_input(
+        "Richte die Kamera auf einen Barcode und mache ein Foto",
+        key="barcode_camera",
+        label_visibility="collapsed", # Der Titel kommt vom Expander
+        help="Für eine bessere Fokussierung, versuche auf den Barcode im Vorschaubild zu tippen."
+    )
 
-img_file_buffer = st.camera_input(
-    "Richte die Kamera auf einen Barcode und mache ein Foto",
-    key="barcode_camera",
-    help="Für eine bessere Fokussierung, versuche auf den Barcode im Vorschaubild zu tippen."
-)
-
-if img_file_buffer:
-    # Lese die Bilddaten und konvertiere sie für die Analyse
-    bytes_data = img_file_buffer.getvalue()
-    cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
-    
-    # Führe die Barcode-Erkennung mit pyzbar durch
-    detected_barcodes = pyzbar_decode(cv2_img)
-    
-    if not detected_barcodes:
-        st.error("Kein Barcode im Bild erkannt. Bitte versuche es erneut mit besserer Beleuchtung und Schärfe.")
-    else:
-        barcode_data = detected_barcodes[0].data.decode("utf-8")
+    if img_file_buffer:
+        # Lese die Bilddaten und konvertiere sie für die Analyse
+        bytes_data = img_file_buffer.getvalue()
+        cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
         
-        # Setze alle relevanten Session States zurück
-        st.session_state.barcode_search_result = None
-        st.session_state.item_to_update_id = None
-        st.session_state.pending_barcode = barcode_data
-
-        # Prüfe, ob der Barcode bereits im Inventar existiert
-        existing_item = inventar_df[inventar_df['barcode'] == barcode_data]
-        if not existing_item.empty:
-            st.session_state.item_to_update_id = existing_item.iloc[0]['id']
-
-        st.rerun()
+        # Führe die Barcode-Erkennung mit pyzbar durch
+        detected_barcodes = pyzbar_decode(cv2_img)
+        
+        if not detected_barcodes:
+            st.error("Kein Barcode im Bild erkannt. Bitte versuche es erneut mit besserer Beleuchtung und Schärfe.")
+        else:
+            barcode_data = detected_barcodes[0].data.decode("utf-8")
+            
+            # Setze alle relevanten Session States zurück
+            st.session_state.barcode_search_result = None
+            st.session_state.item_to_update_id = None
+            st.session_state.pending_barcode = barcode_data
+    
+            # Prüfe, ob der Barcode bereits im Inventar existiert
+            existing_item = inventar_df[inventar_df['barcode'] == barcode_data]
+            if not existing_item.empty:
+                st.session_state.item_to_update_id = existing_item.iloc[0]['id']
+    
+            st.rerun()
 
 if st.session_state.pending_barcode:
     barcode_item_dialog()
