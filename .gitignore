@@ -1,0 +1,12 @@
+# Ignoriere die virtuelle Python-Umgebung
+.venv/
+
+# Ignoriere Python Cache-Dateien
+__pycache__/
+*.pyc
+
+# Ignoriere die lokale Inventar-Datei. Die App erstellt in der Cloud eine neue.
+inventar.csv
+
+# Ignoriere die ngrok-Anwendungsdatei
+ngrok.exe
