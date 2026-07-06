@@ -18,12 +18,21 @@ st.set_page_config(
     layout="wide"
 )
 
+# --- Design Anpassungen (Hintergrund & Theme) ---
+st.markdown("""
+<style>
+[data-testid="stAppViewContainer"] {
+    background-color: #D2B48C; /* Ein heller, bräunlicher Holzton (tan) */
+}
+</style>
+""", unsafe_allow_html=True)
+
 # --- PWA Konfiguration ---
 # Fügt HTML in den <head> der Seite ein, um die PWA-Funktionalität zu ermöglichen.
 # Dies beinhaltet das Verlinken des Manifests und das Registrieren des Service Workers.
 # Wir verwenden absolute Pfade (/static/...), um sicherzustellen, dass sie immer gefunden werden.
 st.markdown("""
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#654321">
 <link rel="manifest" href="/static/manifest.json">
 <script>
 if ('serviceWorker' in navigator) {

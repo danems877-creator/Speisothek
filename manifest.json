@@ -4,7 +4,7 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#000000",
+    "theme_color": "#654321",
     "description": "Dein digitaler Helfer für einen perfekten Überblick über deine Vorräte.",
     "icons": [
         {
