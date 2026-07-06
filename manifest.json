@@ -1,11 +1,11 @@
 {
-    "name": "Inventar-App",
-    "short_name": "Inventar",
+    "name": "Speisothek",
+    "short_name": "Speisothek",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
-    "description": "Inventar-App für den Abstellraum.",
+    "description": "Dein digitaler Helfer für einen perfekten Überblick über deine Vorräte.",
     "icons": [
         {
             "src": "/static/icons/icon-192x192.png",
