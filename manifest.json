@@ -2,7 +2,7 @@
     "name": "Speisothek",
     "short_name": "Speisothek",
     "start_url": ".",
-    "display": "standalone",
+    "display": "fullscreen",
     "background_color": "#ffffff",
     "theme_color": "#654321",
     "description": "Dein digitaler Helfer für einen perfekten Überblick über deine Vorräte.",
