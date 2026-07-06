@@ -70,7 +70,7 @@ def speichere_daten(dateipfad, dataframe):
     dataframe.to_csv(dateipfad, index=False)
 
 # --- Hauptteil der App ---
-st.title("🧊 Inventar-App für den Abstellraum")
+st.title("Speisothek")
 st.write("Dein digitaler Helfer für einen perfekten Überblick über deine Vorräte.")
 
 # Dateipfad zur CSV-Datei definieren
